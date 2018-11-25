@@ -19,12 +19,13 @@ void crazytowntea::clear() {
 
 void crazytowntea::onTransfer(account_name from, account_name to, extended_asset quantity, string memo){
     if (to != _self) return;
+    if (quantity.contract != N(eosio.token)) return;
+
     require_auth(from);
 
     eosio_assert(quantity.is_valid(), "Invalid token transfer");
     eosio_assert(quantity.amount > 0, "must be a positive amount");
 
-    eosio_assert(quantity.contract == N(eosio.token), "must use EOS to buy CTN");
     eosio_assert(quantity.symbol == EOS_SYMBOL, "must use EOS to buy CTN");    
 
     auto g = _global.get();
