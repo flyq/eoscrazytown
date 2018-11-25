@@ -53,11 +53,11 @@ void crazytowntea::onTransfer(account_name from, account_name to, extended_asset
         action(
             permission_level{_self, N(active)},
             N(dacincubator), N(transfer),
-            make_tuple(_self, from, asset(quantity.amount*TOKEN_PRICE_2, CTN_SYMBOL),
+            make_tuple(_self, from, asset(quantity.amount*TOKEN_PRICE_3, CTN_SYMBOL),
                 std::string("buy CTN"))
         ).send();
         g.selled_ctn += quantity.amount*TOKEN_PRICE_3;
-        g.entered_eos += quantity.amount;        
+        g.entered_eos += quantity.amount;
     }
 
     _global.set(g, _self);

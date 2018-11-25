@@ -2499,7 +2499,7 @@
                        (tee_local $12
                         (i64.mul
                          (get_local $5)
-                         (i64.const 3346)
+                         (i64.const 3066)
                         )
                        )
                        (i64.const 4611686018427387903)
