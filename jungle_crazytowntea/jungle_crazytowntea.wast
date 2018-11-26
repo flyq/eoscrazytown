@@ -1051,7 +1051,7 @@
                         (br_if $label$34
                          (i64.gt_u
                           (get_local $2)
-                          (i64.const 30000000)
+                          (i64.const 100000)
                          )
                         )
                         (br_if $label$33
@@ -1062,7 +1062,7 @@
                             (get_local $2)
                            )
                           )
-                          (i64.const 30000000)
+                          (i64.const 100000)
                          )
                         )
                         (set_local $6
@@ -1076,7 +1076,7 @@
                        (br_if $label$31
                         (i64.gt_u
                          (get_local $2)
-                         (i64.const 80000000)
+                         (i64.const 1000000)
                         )
                        )
                        (br_if $label$25
@@ -1087,7 +1087,7 @@
                            (get_local $2)
                           )
                          )
-                         (i64.const 80000000)
+                         (i64.const 1000000)
                         )
                        )
                        (set_local $6
@@ -1103,7 +1103,7 @@
                         (i64.add
                          (i64.mul
                           (i64.sub
-                           (i64.const 30000000)
+                           (i64.const 100000)
                            (get_local $2)
                           )
                           (i64.const 3736)
@@ -1113,7 +1113,7 @@
                           (i64.const 3346)
                          )
                         )
-                        (i64.const -100380000000)
+                        (i64.const -334600000)
                        )
                       )
                      )
@@ -2459,7 +2459,7 @@
                 (i64.add
                  (i64.mul
                   (i64.sub
-                   (i64.const 80000000)
+                   (i64.const 1000000)
                    (get_local $2)
                   )
                   (i64.const 3346)
@@ -2469,7 +2469,7 @@
                   (i64.const 3066)
                  )
                 )
-                (i64.const -245280000000)
+                (i64.const -3066000000)
                )
               )
              )

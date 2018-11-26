@@ -3,7 +3,7 @@
  *  @copyright Andoromeda
  */
 
-#include "crazytowntea.hpp"
+#include "jungle_crazytowntea.hpp"
 
 void crazytowntea::init() {
     require_auth(_self);    
