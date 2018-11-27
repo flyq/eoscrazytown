@@ -32,10 +32,6 @@ class crazytowntea : public contract {
     void init();
     // @abi action
     void clear();
-    // @abi action
-    void withdraw(account_name from);
-    // @abi action
-    void set();
     
     void onTransfer(account_name from, account_name to,
                     extended_asset quantity, string memo); 
@@ -46,19 +42,10 @@ class crazytowntea : public contract {
     struct global {       
         uint64_t selled_ctn;
         uint64_t entered_eos;
-        bool state;
     };
 
     typedef singleton<N(global), global> singleton_global;
     singleton_global _global;
-
-    // @abi table accounts
-    struct account {
-        uint64_t eos_amount;
-        uint64_t ctn_amount;
-    }
-
-    typedef singleton<N(accounts), account> singleton_accounts;
 };
 
 
@@ -80,7 +67,7 @@ void crazytowntea::apply(account_name code, action_name action) {
 
     if (code != _self) return;
     switch (action) {
-        EOSIO_API(crazytowntea, (init)(clear)(withdraw)(set));
+        EOSIO_API(crazytowntea, (init)(clear));
     };
 }
 

@@ -13,6 +13,4 @@
 #define EOS_QUOTA_1 30000000         // 3,000 EOS
 #define EOS_QUOTA_2 80000000         // 8,000 EOS
 
-#define CTN_QUOTA 90000000000   // 9,000,000 CTN
-
 #endif
