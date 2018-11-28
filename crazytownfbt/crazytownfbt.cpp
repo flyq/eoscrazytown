@@ -3,7 +3,7 @@
 void crazytownfbt::init() {
     require_auth(_self);    
     auto g = _global.get_or_create(_self, global{});
-    g.state = false;
+    g.state = false;  // false:0; true:1
     g.released_ctn = 0;
 
     _global.set(g, _self); 
