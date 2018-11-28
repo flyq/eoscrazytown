@@ -5,45 +5,74 @@
 
 #include "config.hpp"
 
-namespace eosio {
+using eosio::action;
+using eosio::asset;
+using eosio::contract;
+using eosio::extended_asset;
+using eosio::permission_level;
+using eosio::singleton;
+using eosio::symbol_name;
+using eosio::symbol_type;
 
-    class [[eosio::contract("crazytownfbt")]] crazytownfbt : public contract {
-        public: 
-            using contract::contract;
 
-            [[eosio::action]]
-            void init();
+class crazytownfbt : public contract {
+    public: crazytownfbt(account_name self) :
+        contract(self),
+        _global(_self, _self){}
 
-            [[eosio::action]]
-            void clear();
+        // @abi action            
+        void init();
 
-            [[eosio::action]]
-            void withdraw(name from);
+        // @abi action
+        void clear();
 
-            [[eosio::action]]
-            void set(name dist, uint64_t amount);
+        // @abi action
+        void withdraw(account_name from);
 
-            [[eosio::action]]
-            void unlock();
+        // @abi action
+        void setaccount(account_name dist, uint64_t amount);
+
+        // @abi action
+        void changelock();
+
+        void apply(account_name code, action_name action);
+
         
-        private:
-            struct [[eosio::table]] global {
-                uint64_t released_ctn;
-                bool state;
-            };
-        
-            struct [[eosio::table]] account_info {
-                uint64_t amount;
-                name owner;
-                bool state;
+        // @abi table global        
+        struct global {
+            uint64_t released_ctn;
+            bool state;
+        };
 
-                name primary_key()const { return owner; }
-            };
+        // @abi table accounts
+        struct account_info {
+            uint64_t remain_amount;
+            uint64_t total_amount;
+        };
 
-            typedef singleton<"global"_n, global> singleton_global;
-            singleton_global _global;   
+        typedef singleton<N(global), global> singleton_global;
+        singleton_global _global;   
 
-            typedef multi_index<"accounts"_n, account_info> account_index;
-            account_index _account;
+        typedef singleton<N(accounts), account_info> singleton_accounts;
+};
+
+void crazytownfbt::apply(account_name code, action_name action) {
+    auto &thiscontract = *this;
+
+    if (action == N(transfer)) {
+        return;
+    }    
+    if (code != _self) return;
+    switch (action) {
+        EOSIO_API(crazytownfbt, (init)(clear)(withdraw)(setaccount)(changelock));
     };
+}
+
+extern "C" {
+    [[noreturn]] void apply(uint64_t receiver, uint64_t code, uint64_t action) 
+    {
+        crazytownfbt p(receiver);
+        p.apply(code, action);
+        eosio_exit(0);
+    }
 }

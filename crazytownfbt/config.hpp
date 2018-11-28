@@ -4,6 +4,6 @@
 #define CTN_SYMBOL S(4, CTN)
 
 #define TOKEN_SYMBOL CTN_SYMBOL
-#define TOKEN_CONTRACT "dacincubator"_n
+#define TOKEN_CONTRACT N(dacincubator)
 
 #endif
