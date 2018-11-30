@@ -27,7 +27,7 @@ void crazytowntea::onTransfer(account_name from, account_name to, extended_asset
     eosio_assert(quantity.amount > 0, "must be a positive amount");
 
     eosio_assert(quantity.symbol == EOS_SYMBOL, "must use EOS to buy CTN");    
-
+    /*
     auto g = _global.get();
     uint64_t _selled_ctn = 0;
 
@@ -79,4 +79,5 @@ void crazytowntea::onTransfer(account_name from, account_name to, extended_asset
     }
 
     _global.set(g, _self);
+    */
 }
